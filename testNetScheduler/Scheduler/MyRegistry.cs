@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using FluentScheduler;
 
 namespace testNetScheduler.Scheduler
@@ -7,7 +8,7 @@ namespace testNetScheduler.Scheduler
     {
         public MyRegistry()
         {
-            Schedule<MyJob>().ToRunNow().AndEvery(20).Seconds();
+            Schedule<MyJob>().ToRunNow().AndEvery(10).Seconds();
 
             Schedule<MyJob2>().ToRunEvery(20).Seconds();
         }
@@ -17,7 +18,8 @@ namespace testNetScheduler.Scheduler
     {
         public void Execute()
         {
-            throw new NotImplementedException();
+            Thread.Sleep(5000);
+            Console.WriteLine($"MyJob2 123 - {DateTime.Now}");
         }
     }
 
@@ -25,7 +27,8 @@ namespace testNetScheduler.Scheduler
     {
         public void Execute()
         {
-            Console.WriteLine($"test 123 - {DateTime.Now}");
+            Thread.Sleep(5000);
+            Console.WriteLine($"MyJob 123 - {DateTime.Now}");
         }
     }
 }
