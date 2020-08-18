@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
@@ -28,6 +29,8 @@ namespace testNetScheduler
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
             var builder = new ContainerBuilder();
+
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<Test>().As<ITest>().InstancePerLifetimeScope();
 

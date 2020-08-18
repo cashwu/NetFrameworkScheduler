@@ -146,6 +146,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduler\MyJob.cs" />
+    <Compile Include="Scheduler\MyJob2.cs" />
     <Compile Include="Scheduler\MyRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
