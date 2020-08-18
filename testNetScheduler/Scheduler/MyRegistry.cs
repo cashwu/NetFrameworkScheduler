@@ -1,5 +1,7 @@
 using System;
 using System.Threading;
+using System.Web.Mvc;
+using Autofac;
 using FluentScheduler;
 
 namespace testNetScheduler.Scheduler
@@ -19,16 +21,23 @@ namespace testNetScheduler.Scheduler
         public void Execute()
         {
             Thread.Sleep(5000);
-            Console.WriteLine($"MyJob2 123 - {DateTime.Now}");
+            Console.WriteLine($"MyJob 02 every 20s - {DateTime.Now}");
         }
     }
 
     internal class MyJob : IJob
     {
+        private readonly ITest _test;
+
+        public MyJob()
+        {
+            _test = MvcApplication.Container.Resolve<ITest>();
+        }
+        
         public void Execute()
         {
             Thread.Sleep(5000);
-            Console.WriteLine($"MyJob 123 - {DateTime.Now}");
+            Console.WriteLine($"MyJob 01 every 10s , {_test.Get()} - {DateTime.Now}");
         }
     }
 }
